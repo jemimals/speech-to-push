@@ -1,0 +1,9 @@
+For setting up Ollama, refer to: https://docs.spring.io/spring-ai/reference/api/chat/ollama-chat.html
+
+We are using the Mistral model, so run the command ollama pull mistral
+
+This project requires JDK 17.
+
+There is a local properties file needed to be able to run this - please reach out to the maintainers
+
+Files are saved under tmp/ and have a UUID
