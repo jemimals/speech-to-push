@@ -8,6 +8,6 @@ import lombok.Data;
 public class MessageResponseDto {
 
     private String status;
-    private String filePath;
+    private String soundUrl;
 
 }

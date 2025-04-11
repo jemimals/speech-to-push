@@ -1,6 +1,7 @@
 package com.speechtopush.demo.demo.controllers;
 
 import com.speechtopush.demo.demo.api.MessageRequestDto;
+import com.speechtopush.demo.demo.api.MessageResponseDto;
 import lombok.AllArgsConstructor;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.ollama.OllamaChatModel;
@@ -39,7 +40,7 @@ public class MessageController {
 
 
     @PostMapping( "/message")
-    public String getSoundbite(@RequestBody MessageRequestDto requestDto) throws IOException, InterruptedException {
+    public MessageResponseDto getSoundbite(@RequestBody MessageRequestDto requestDto) throws IOException, InterruptedException {
 
         String messagePrompt = messageService.getMessage(requestDto.getContext().getMessage());
 
@@ -51,12 +52,18 @@ public class MessageController {
 
        String id = UUID.randomUUID().toString();
 
-       String path = "/tmp/" + id + ".wav";
+       String path = id + ".wav";
 
         Path p = Paths.get(path);
         Files.write(p, wav);
 
-       return path;
+        String url = "http://localhost:8080/" + path;
+
+        MessageResponseDto responseDto = MessageResponseDto.builder()
+                .soundUrl(url)
+                .build();
+
+       return responseDto;
 
        // return null;
 
