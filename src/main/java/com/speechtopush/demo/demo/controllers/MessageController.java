@@ -56,7 +56,7 @@ public class MessageController {
         Path p = Paths.get(path);
         Files.write(p, wav);
 
-       return res;
+       return path;
 
        // return null;
 
